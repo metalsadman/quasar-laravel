@@ -1,4 +1,5 @@
-# Laravel 5.7 + Quasar Framework 0.17 (WIP)
+# Laravel 5.7 + Quasar Framework v1 Beta (WIP)
+###sdfsdf
 
 ## Laravel License
 
