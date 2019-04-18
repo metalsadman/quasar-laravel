@@ -30,12 +30,12 @@ export default {
           {
             headers: { 'Content-Type': 'multipart/form-data' },
             onUploadProgress: (progressEvent) => {
-              console.log('progressEvent', progressEvent)
-              console.log('current progress', progressEvent.loaded / progressEvent.total)
-              console.log('current progress parsed', parseFloat(progressEvent.loaded / progressEvent.total).toFixed(2))
-              console.log('current progress parsed as num', parseFloat((progressEvent.loaded / progressEvent.total).toFixed(2)))
-              console.log('using round', Math.round((progressEvent.loaded / progressEvent.total) * 100) / 100)
-              console.log('current progress percentage', Math.min(99, parseInt((progressEvent.loaded / progressEvent.total) * 100, 10)))
+              //   console.log('progressEvent', progressEvent)
+              //   console.log('current progress', progressEvent.loaded / progressEvent.total)
+              //   console.log('current progress parsed', parseFloat(progressEvent.loaded / progressEvent.total).toFixed(2))
+              //   console.log('current progress parsed as num', parseFloat((progressEvent.loaded / progressEvent.total).toFixed(2)))
+              //   console.log('using round', Math.round((progressEvent.loaded / progressEvent.total) * 100) / 100)
+              //   console.log('current progress percentage', Math.min(99, parseInt((progressEvent.loaded / progressEvent.total) * 100, 10)))
               // updateProgress(progressEvent.loaded / progressEvent.total) // correct way
               updateProgress(Math.round((progressEvent.loaded / progressEvent.total) * 100) / 100)
             }

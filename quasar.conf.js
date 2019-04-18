@@ -7,7 +7,7 @@ const
 module.exports = function (ctx) {
   return {
     // app plugins (/src/plugins)
-    plugins: [
+    boot: [
       'i18n',
       'axios'
     ],
@@ -15,11 +15,11 @@ module.exports = function (ctx) {
       'app.styl'
     ],
     extras: [
-      ctx.theme.mat ? 'roboto-font' : null,
+      'roboto-font',
       'material-icons' // optional, you are not bound to it
-      // 'ionicons',
-      // 'mdi',
-      // 'fontawesome'
+      // 'ionicons-v4',
+      // 'mdi-v3',
+      // 'fontawesome-v5'
     ],
     supportIE: false,
     build: {
@@ -66,37 +66,37 @@ module.exports = function (ctx) {
       }],
       historyApiFallback: true
     },
-    // framework: 'all' --- includes everything; for dev only!
-    framework: {
-      components: [
-        'QLayout',
-        'QLayoutHeader',
-        'QLayoutDrawer',
-        'QPageContainer',
-        'QPage',
-        'QToolbar',
-        'QToolbarTitle',
-        'QBtn',
-        'QIcon',
-        'QList',
-        'QListHeader',
-        'QItem',
-        'QItemMain',
-        'QItemSide',
-        'QUploader'
-      ],
-      directives: [
-        'Ripple'
-      ],
-      // Quasar plugins
-      plugins: [
-        'Notify'
-      ]
-      // iconSet: ctx.theme.mat ? 'material-icons' : 'ionicons'
-      // i18n: 'de' // Quasar language
-    },
-    // animations: 'all' --- includes all animations
-    animations: [],
+    framework: 'all', // --- includes everything; for dev only!
+    // framework: {
+    //   components: [
+    //     'QLayout',
+    //     'QLayoutHeader',
+    //     'QLayoutDrawer',
+    //     'QPageContainer',
+    //     'QPage',
+    //     'QToolbar',
+    //     'QToolbarTitle',
+    //     'QBtn',
+    //     'QIcon',
+    //     'QList',
+    //     'QListHeader',
+    //     'QItem',
+    //     'QItemMain',
+    //     'QItemSide',
+    //     'QUploader'
+    //   ],
+    //   directives: [
+    //     'Ripple'
+    //   ],
+    //   // Quasar plugins
+    //   plugins: [
+    //     'Notify'
+    //   ]
+    //   // iconSet: ctx.theme.mat ? 'material-icons' : 'ionicons'
+    //   // i18n: 'de' // Quasar language
+    // },
+    animations: 'all', // -- - includes all animations
+    // animations: [],
     ssr: {
       pwa: false
     },
