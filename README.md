@@ -1,4 +1,4 @@
-# Laravel 5.7 + Quasar Framework v1 Beta (WIP)
+# Laravel 5.8 + Quasar Framework v1.0.0-rc.5 (WIP)
 ## Build Setup
 > rename or copy  .env.example to .env
 ``` bash
