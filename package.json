@@ -11,14 +11,14 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@quasar/extras": "^1.1.2",
+    "@quasar/extras": "^1.1.4",
     "axios": "^0.18.0",
-    "quasar": "^1.0.0-rc.4",
+    "quasar": "^1.0.2",
     "vue-i18n": "^7.3.3",
     "yarn": "^1.15.2"
   },
   "devDependencies": {
-    "@quasar/app": "^1.0.0-rc.5",
+    "@quasar/app": "^1.0.0",
     "babel-eslint": "^8.2.1",
     "copy-webpack-plugin": "^4.5.2",
     "eslint": "^4.18.2",
