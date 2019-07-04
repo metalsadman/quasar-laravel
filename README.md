@@ -1,4 +1,4 @@
-# Laravel 5.8 + Quasar Framework v1.0.0-rc.5 (WIP)
+# Laravel 5.8 + Quasar Framework v1.0.2 Stable (WIP)
 ## Build Setup
 > rename or copy  .env.example to .env
 ``` bash
@@ -7,8 +7,6 @@ $ composer install
 
 # Node.js >= Latest is required.
 $ npm install -g @quasar/cli@latest
-# or using yarn
-$ yarn global @quasar/cli@latest
 
 # install node dependencies
 $ npm install
@@ -33,5 +31,5 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Quasar License
 
-Copyright (c) 2016-2017 Razvan Stoenescu
+Copyright (c) 2016-2019 Razvan Stoenescu
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
