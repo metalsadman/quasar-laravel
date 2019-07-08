@@ -2,7 +2,7 @@
   <q-page class="flex flex-center">
     <div class="column justify-center items-center">
       <div>
-        <h5>Laravel 5.8 (as API backend) + Quasar</h5>
+        <h5>Laravel 5.7 (as API backend) + Quasar PWA (Vuejs)</h5>
       </div>
       <div>
         <img
@@ -45,11 +45,36 @@ export default {
     }
   },
   methods: {
+    // async makeRequest () {
+    //   let response
+    //   let color = 'negative'
+    //   this.loading = true
+
+    //   try {
+    //     response = ''
+    //     let req = await fetch(process.env.api + '/test')
+
+    //     if (!req.ok) throw new Error('error request')
+
+    //     let {data} = await req.json()
+    //     response = data
+    //     color = 'positive'
+    //   } catch (err) {
+    //     console.log(err)
+    //     response = err.message
+    //   }
+
+    //   setTimeout(() => {
+    //     this.response = response
+    //     this.color = color
+    //     this.loading = false
+    //   }, 700)
+    // }
     makeRequest () {
       //   let response
       //   let color = 'negative'
       this.loading = true
-      this.$axios.get(process.env.api + '/test')
+      this.$axios.get('/test')
         .then(res => {
           console.log('res', res)
           this.loading = false

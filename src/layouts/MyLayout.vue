@@ -1,9 +1,11 @@
 <template>
-  <q-layout view="lHh lpr lFf">
-    <!-- lFf -->
-    <!-- lHh lpr lFf lHh Lpr fff-->
-    <q-header elevated>
-      <q-toolbar>
+  <q-layout view="lHh Lpr lFf">
+    <q-layout-header>
+      <q-toolbar
+        color="primary"
+        :glossy="$q.theme === 'mat'"
+        :inverted="$q.theme === 'ios'"
+      >
         <q-btn
           flat
           dense
@@ -14,144 +16,61 @@
           <q-icon name="menu" />
         </q-btn>
 
-        <q-toolbar-title>{{ pageMeta.title || '' }}</q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
-    <q-drawer
-      v-model="leftDrawerOpen"
-      bordered
-      content-class="bg-grey-2"
-    >
-      <!-- TODO:: move drawer items to a separate file -->
-      <q-list>
-        <q-item
-          clickable
-          to="/"
-        >
-          <q-item-section avatar>
-            <q-icon name="home" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Home</q-item-label>
-            <q-item-label caption>Home</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-separator />
-        <q-item-label header>Sample Modules</q-item-label>
-        <q-item
-          clickable
-          to="/component-samples"
-        >
-          <q-item-section avatar>
-            <q-icon name="school" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Select Sample</q-item-label>
-            <q-item-label caption>QSelect Extension</q-item-label>
-          </q-item-section>
-        </q-item>
-        <!-- <q-item clickable to="/autocomplete">
-          <q-item-section avatar>
-            <q-icon name="code" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Autocomplete Sample</q-item-label>
-            <q-item-label caption>samp</q-item-label>
-          </q-item-section>
-        </q-item> -->
-        <q-item
-          clickable
-          to="/form-validations"
-        >
-          <q-item-section avatar>
-            <q-icon name="chat" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Form Input Samples</q-item-label>
-            <q-item-label caption>Quasar Form Input Extension with Vuelidate</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item
-          clickable
-          to="/dialog-sample"
-        >
-          <q-item-section avatar>
-            <q-icon name="record_voice_over" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Dialog Sample</q-item-label>
-            <q-item-label caption>Dialog Sample</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item
-          clickable
-          to="/test-server"
-        >
-          <q-item-section avatar>
-            <q-icon name="rss_feed" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Test Sandbox Server</q-item-label>
-            <q-item-label caption>Emulate api call using axios</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item
-          clickable
-          to="/table-extension"
-        >
-          <q-item-section avatar>
-            <q-icon name="rss_feed" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>QTable Extension</q-item-label>
-            <q-item-label caption>QTable Extension Sample</q-item-label>
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </q-drawer>
-
-    <q-footer
-      class="text-white"
-      reveal
-      v-if="false"
-    >
-      <q-toolbar>
         <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
-          </q-avatar>
-          Title
+          Quasar App
+          <div slot="subtitle">Running on Quasar v{{ $q.version }}</div>
         </q-toolbar-title>
       </q-toolbar>
-    </q-footer>
+    </q-layout-header>
+
+    <q-layout-drawer
+      v-model="leftDrawerOpen"
+      :content-class="$q.theme === 'mat' ? 'bg-grey-2' : null"
+    >
+      <q-list
+        no-border
+        link
+        inset-delimiter
+      >
+        <q-list-header>Essential Links</q-list-header>
+        <q-item @click.native="openURL('http://quasar-framework.org')">
+          <q-item-side icon="school" />
+          <q-item-main label="Docs" sublabel="quasar-framework.org" />
+        </q-item>
+        <q-item @click.native="openURL('https://github.com/quasarframework/')">
+          <q-item-side icon="code" />
+          <q-item-main label="GitHub" sublabel="github.com/quasarframework" />
+        </q-item>
+        <q-item @click.native="openURL('https://discord.gg/5TDhbDg')">
+          <q-item-side icon="chat" />
+          <q-item-main label="Discord Chat Channel" sublabel="https://discord.gg/5TDhbDg" />
+        </q-item>
+        <q-item @click.native="openURL('http://forum.quasar-framework.org')">
+          <q-item-side icon="record_voice_over" />
+          <q-item-main label="Forum" sublabel="forum.quasar-framework.org" />
+        </q-item>
+        <q-item @click.native="openURL('https://twitter.com/quasarframework')">
+          <q-item-side icon="rss feed" />
+          <q-item-main label="Twitter" sublabel="@quasarframework" />
+        </q-item>
+      </q-list>
+    </q-layout-drawer>
 
     <q-page-container>
-      <transition
-        enter-active-class="animated fadeInLeft"
-        leave-active-class="animated fadeOutRight"
-        mode="out-in"
-      >
-        <router-view />
-      </transition>
+      <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
 import { openURL } from 'quasar'
-import { mapFields } from 'assets/utils/vuex-utils'
+
 export default {
   name: 'MyLayout',
   data () {
     return {
       leftDrawerOpen: this.$q.platform.is.desktop
     }
-  },
-  computed: {
-    ...mapFields('commons', ['pageMeta'])
   },
   methods: {
     openURL

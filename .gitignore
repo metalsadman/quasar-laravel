@@ -1,19 +1,15 @@
 /node_modules
-/public/hot
-# /public
-/public/storage
+/public
 /storage/*.key
 /vendor
-.env
-.phpunit.result.cache
+/.idea
+/.vscode
+/.vagrant
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-
-/.idea
-/.vscode
-/.vagrant
+.env
 
 .quasar
 .DS_Store

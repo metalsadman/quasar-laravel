@@ -1,19 +1,19 @@
 // Configuration for your app
 const path = require('path'),
-  // SymlinkWebpackPlugin = require('symlink-webpack-plugin'),
+  SymlinkWebpackPlugin = require('symlink-webpack-plugin'),
   CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = function (ctx) {
   return {
     // app plugins (/src/plugins)
-    boot: ['i18n', 'axios'],
+    plugins: ['i18n', 'axios'],
     css: ['app.styl'],
     extras: [
-      'roboto-font',
-      'material-icons', // optional, you are not bound to it
-      // 'ionicons-v4',
-      'mdi-v3'
-      // 'fontawesome-v5'
+      ctx.theme.mat ? 'roboto-font' : null,
+      'material-icons' // optional, you are not bound to it
+      // 'ionicons',
+      // 'mdi',
+      // 'fontawesome'
     ],
     supportIE: false,
     build: {
@@ -42,15 +42,17 @@ module.exports = function (ctx) {
             ])
           )
 
-          //   cfg.plugins.push(new SymlinkWebpackPlugin({
-          //     origin: '../storage/app/public',
-          //     symlink: 'storage'
-          //   }))
+          cfg.plugins.push(
+            new SymlinkWebpackPlugin({
+              origin: '../storage/app/public',
+              symlink: 'storage'
+            })
+          )
         }
       },
       env: {
         api: JSON.stringify(
-          ctx.dev ? '/api' : '/api' // 'http://some.endpoint/api' // production end-point
+          ctx.dev ? '/api' : 'http://some.endpoint/api' // production end-point
         )
       }
     },
@@ -66,7 +68,7 @@ module.exports = function (ctx) {
       ],
       historyApiFallback: true
     },
-    framework: 'all', // --- includes everything; for dev only!
+    // framework: 'all' --- includes everything; for dev only!
     // framework: {
     //   components: [
     //     'QLayout',
@@ -82,20 +84,15 @@ module.exports = function (ctx) {
     //     'QListHeader',
     //     'QItem',
     //     'QItemMain',
-    //     'QItemSide',
-    //     'QUploader'
+    //     'QItemSide'
     //   ],
-    //   directives: [
-    //     'Ripple'
-    //   ],
+    //   directives: ['Ripple'],
     //   // Quasar plugins
-    //   plugins: [
-    //     'Notify'
-    //   ]
+    //   plugins: ['Notify']
     //   // iconSet: ctx.theme.mat ? 'material-icons' : 'ionicons'
     //   // i18n: 'de' // Quasar language
     // },
-    animations: 'all', // -- - includes all animations
+    animations: 'all', // --- includes all animations
     // animations: [],
     ssr: {
       pwa: false
