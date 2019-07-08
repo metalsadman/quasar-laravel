@@ -15,6 +15,7 @@
     "axios": "^0.18.0",
     "quasar": "^1.0.2",
     "vue-i18n": "^7.3.3",
+    "vuex-persistedstate": "^2.5.4",
     "yarn": "^1.15.2"
   },
   "devDependencies": {

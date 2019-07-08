@@ -2,16 +2,23 @@
   <q-page class="flex flex-center">
     <div class="column justify-center items-center">
       <div>
-        <h5>Laravel 5.7 (as API backend) + Quasar PWA (Vuejs)</h5>
+        <h5>Laravel 5.8 (as API backend) + Quasar</h5>
       </div>
       <div>
-        <img alt="Quasar logo" src="~assets/quasar-logo-full.svg">
+        <img
+          alt="Quasar logo"
+          src="~assets/quasar-logo-full.svg"
+        >
       </div>
       <div>
         <p>Make an api request to Laravel <i>/api/test</i><br>
           <sub>Before you need to run <i>artisan serve</i></sub>
         </p>
-        <q-btn :loading="loading" :color="color" @click="makeRequest">
+        <q-btn
+          :loading="loading"
+          :color="color"
+          @click="makeRequest"
+        >
           make an api request
         </q-btn>
       </div>
@@ -38,30 +45,38 @@ export default {
     }
   },
   methods: {
-    async makeRequest () {
-      let response
-      let color = 'negative'
+    makeRequest () {
+      //   let response
+      //   let color = 'negative'
       this.loading = true
+      this.$axios.get(process.env.api + '/test')
+        .then(res => {
+          console.log('res', res)
+          this.loading = false
+        }).catch(err => {
+          this.loading = false
+          console.log('err', err)
+        })
 
-      try {
-        response = ''
-        let req = await fetch(process.env.api + '/test')
+      //   try {
+      //     response = ''
+      //     let req = await fetch(process.env.api + '/test')
 
-        if (!req.ok) throw new Error('error request')
+      //     if (!req.ok) throw new Error('error request')
 
-        let {data} = await req.json()
-        response = data
-        color = 'positive'
-      } catch (err) {
-        console.log(err)
-        response = err.message
-      }
+      //     let {data} = await req.json()
+      //     response = data
+      //     color = 'positive'
+      //   } catch (err) {
+      //     console.log(err)
+      //     response = err.message
+      //   }
 
-      setTimeout(() => {
-        this.response = response
-        this.color = color
-        this.loading = false
-      }, 700)
+      //   setTimeout(() => {
+      //     this.response = response
+      //     this.color = color
+      //     this.loading = false
+      //   }, 700)
     }
   }
 }
