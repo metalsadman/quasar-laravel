@@ -1,4 +1,4 @@
-# Laravel 5.8 + Quasar Framework v1.0.2 Stable (WIP)
+# Laravel 5.8 + Quasar Framework v1.0.3 Stable (WIP)
 ## Build Setup
 > rename or copy  .env.example to .env
 ``` bash
