@@ -17,11 +17,14 @@ $ yarn
 $ php artisan key:generate
 
 # set privileges to node_modules folder (optional)
-#$ chmod -R u+x node_modules/
+# chmod -R u+x node_modules/
 
 # first start the back-end (don't use the artisan's serve url in this mode)
 $ php artisan serve
+# run quasar
+$ quasar dev
 
+# to run just laravel along with the quasar fe, issue a quasar build then php artisan serve as usual
 ```
 Check out `quasar.conf.js`
 
