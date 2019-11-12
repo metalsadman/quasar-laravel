@@ -6,14 +6,16 @@ const path = require('path'),
 module.exports = function (ctx) {
   return {
     // app plugins (/src/plugins)
-    plugins: ['i18n', 'axios'],
-    css: ['app.styl'],
+    boot: ['i18n', 'axios'],
+    css: ['app.sass'],
     extras: [
-      ctx.theme.mat ? 'roboto-font' : null,
-      'material-icons' // optional, you are not bound to it
-      // 'ionicons',
-      // 'mdi',
-      // 'fontawesome'
+      'roboto-font',
+      'material-icons', // optional, you are not bound to it
+      // 'ionicons-v4',
+      'mdi-v4'
+      // 'mdi-v3'
+      // 'fontawesome-v5',
+      // 'eva-icons'
     ],
     supportIE: false,
     build: {
@@ -29,7 +31,7 @@ module.exports = function (ctx) {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules|quasar)/
+          exclude: /node_modules/
         })
 
         if (ctx.prod) {
@@ -68,30 +70,30 @@ module.exports = function (ctx) {
       ],
       historyApiFallback: true
     },
-    // framework: 'all' --- includes everything; for dev only!
-    // framework: {
-    //   components: [
-    //     'QLayout',
-    //     'QLayoutHeader',
-    //     'QLayoutDrawer',
-    //     'QPageContainer',
-    //     'QPage',
-    //     'QToolbar',
-    //     'QToolbarTitle',
-    //     'QBtn',
-    //     'QIcon',
-    //     'QList',
-    //     'QListHeader',
-    //     'QItem',
-    //     'QItemMain',
-    //     'QItemSide'
-    //   ],
-    //   directives: ['Ripple'],
-    //   // Quasar plugins
-    //   plugins: ['Notify']
-    //   // iconSet: ctx.theme.mat ? 'material-icons' : 'ionicons'
-    //   // i18n: 'de' // Quasar language
-    // },
+    framework: {
+      all: 'auto',
+      // Quasar plugins
+      plugins: [
+        'Notify',
+        'Dialog',
+        'LocalStorage',
+        'SessionStorage',
+        'LoadingBar'
+      ],
+
+      // iconSet: 'material-icons',
+
+      iconSet: 'material-icons',
+      // lang: 'de' // Quasar language
+      config: {
+        // cordova: {
+        //   backButtonExit: false
+        // },
+        loadingBar: {
+          color: 'accent'
+        }
+      }
+    },
     animations: 'all', // --- includes all animations
     // animations: [],
     ssr: {
@@ -110,29 +112,29 @@ module.exports = function (ctx) {
         theme_color: '#027be3',
         icons: [
           {
-            src: 'statics/icons/icon-128x128.png',
-            sizes: '128x128',
-            type: 'image/png'
+            'src': 'statics/icons/icon-128x128.png',
+            'sizes': '128x128',
+            'type': 'image/png'
           },
           {
-            src: 'statics/icons/icon-192x192.png',
-            sizes: '192x192',
-            type: 'image/png'
+            'src': 'statics/icons/icon-192x192.png',
+            'sizes': '192x192',
+            'type': 'image/png'
           },
           {
-            src: 'statics/icons/icon-256x256.png',
-            sizes: '256x256',
-            type: 'image/png'
+            'src': 'statics/icons/icon-256x256.png',
+            'sizes': '256x256',
+            'type': 'image/png'
           },
           {
-            src: 'statics/icons/icon-384x384.png',
-            sizes: '384x384',
-            type: 'image/png'
+            'src': 'statics/icons/icon-384x384.png',
+            'sizes': '384x384',
+            'type': 'image/png'
           },
           {
-            src: 'statics/icons/icon-512x512.png',
-            sizes: '512x512',
-            type: 'image/png'
+            'src': 'statics/icons/icon-512x512.png',
+            'sizes': '512x512',
+            'type': 'image/png'
           }
         ]
       }
