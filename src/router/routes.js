@@ -17,4 +17,6 @@ if (process.env.MODE !== 'ssr') {
   })
 }
 
+console.log('hey router.js')
+
 export default routes

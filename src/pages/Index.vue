@@ -5,10 +5,10 @@
         <h5>Laravel 5.7 (as API backend) + Quasar PWA (Vuejs)</h5>
       </div>
       <div>
-        <img
+        <!-- <img
           alt="Quasar logo"
           src="~assets/quasar-logo-full.svg"
-        >
+        > -->
       </div>
       <div>
         <p>Make an api request to Laravel <i>/api/test</i><br>
@@ -43,6 +43,9 @@ export default {
       response: '',
       loading: false
     }
+  },
+  created () {
+    console.log('hey index.vue')
   },
   methods: {
     // async makeRequest () {
