@@ -1,6 +1,6 @@
 # Laravel 5.7 + Quasar Framework v1.+
 
-## Build Setup
+## Setup
 
 > rename or copy .env.example to .env
 
