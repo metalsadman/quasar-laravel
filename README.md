@@ -27,13 +27,16 @@ $ php artisan key:generate
 ```
 ## Dev
 > first start the back-end (don't use the artisan's serve url in this mode)
+
 `$ php artisan serve`
 
 > then build for development mode
+
 `$ quasar dev | -m <mode>`
 
 ## Production
 > build for production (it'll generate and copy the necessary files)
+
 `$ quasar build | -m <mode>`
 `$ php artisan serve`
 
