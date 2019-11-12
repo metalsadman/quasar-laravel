@@ -35,6 +35,7 @@ $ quasar dev | -m <mode>
 
 # build for production (it'll generate and copy the necessary files)
 $ quasar build | -m <mode>
+$ php artisan serve
 ```
 
 Check out `quasar.conf.js`
