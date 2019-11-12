@@ -89,7 +89,7 @@ const defaultInterceptor = () => {
 const appMode = type =>
   ({
     test: 'https://b9g95.sse.codesandbox.io/',
-    laravel: 'http://localhost:8000/'
+    laravel: 'http://localhost:8000/api'
     // get mobile () {
     //   return Platform.is.cordova ? this.local : this.test
     // }
@@ -102,7 +102,8 @@ export default ({ Vue, store }) => {
   axios.defaults.headers.post['Content-Type'] = 'application/json'
   axios.defaults.timeout = 2000
   // add axios generic interceptor
-  process.env.DEV && defaultInterceptor()
+  defaultInterceptor()
+  // process.env.DEV && defaultInterceptor()
   // customInterceptor(store)
   // const token = store.getters['commons/getField']('token')
   // if (token) {
