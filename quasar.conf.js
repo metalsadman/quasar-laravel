@@ -6,7 +6,15 @@ const path = require('path'),
 module.exports = function (ctx) {
   return {
     // app plugins (/src/plugins)
-    boot: ['i18n', 'axios'],
+    boot: [
+      'axios',
+      'base-components',
+      'vuelidate',
+      'vee-validate',
+      'vue-signature-pad',
+      'custom-input'
+    ],
+
     css: ['app.sass'],
     extras: [
       'roboto-font',
@@ -33,6 +41,11 @@ module.exports = function (ctx) {
           loader: 'eslint-loader',
           exclude: /node_modules/
         })
+
+        cfg.resolve.alias = {
+          ...cfg.resolve.alias,
+          features: path.resolve(__dirname, './src/features')
+        }
 
         if (ctx.prod) {
           cfg.plugins.push(
@@ -92,7 +105,10 @@ module.exports = function (ctx) {
         loadingBar: {
           color: 'accent'
         }
-      }
+      },
+      directives: [
+        'Ripple'
+      ]
     },
     animations: 'all', // --- includes all animations
     // animations: [],

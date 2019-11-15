@@ -14,7 +14,7 @@ let notif = () => void 0
  * and logging it in the console, useful when in dev
  */
 // eslint-disable-next-line
-const defaultInterceptor = () => {
+const defaultInterceptor = store => {
   // register a standard request interceptor
   axios.interceptors.request.use(
     config => {
@@ -45,6 +45,7 @@ const defaultInterceptor = () => {
         'color: green; font-weight: bold;',
         response
       )
+      store.dispatch('commons/testRouter')
       notif()
       notif = Notify.create({
         color: 'positive',
@@ -102,7 +103,7 @@ export default ({ Vue, store }) => {
   axios.defaults.headers.post['Content-Type'] = 'application/json'
   axios.defaults.timeout = 2000
   // add axios generic interceptor
-  defaultInterceptor()
+  defaultInterceptor(store)
   // process.env.DEV && defaultInterceptor()
   // customInterceptor(store)
   // const token = store.getters['commons/getField']('token')

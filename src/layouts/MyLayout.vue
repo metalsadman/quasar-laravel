@@ -1,136 +1,146 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+  <q-layout view="lHh lpr lFf">
+    <!-- lFf -->
+    <!-- lHh lpr lFf lHh Lpr fff-->
+    <q-header
+      elevated
+      class="toolbar-grad"
+    >
       <q-toolbar>
         <q-btn
           flat
           dense
           round
           @click="leftDrawerOpen = !leftDrawerOpen"
-          icon="menu"
           aria-label="Menu"
-        />
+          v-touch-hold:1000.mouse.stop="touchHeld"
+        >
+          <q-icon name="menu" />
+        </q-btn>
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
+        <q-toolbar-title>{{ pageMeta.title || '' }}</q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
+        <q-btn
+          :icon="$q.dark.isActive ? 'mdi-brightness-5' : 'mdi-brightness-4'"
+          flat
+          dense
+          round
+          @click="$q.dark.isActive ? $q.dark.set(false) : $q.dark.set(true)"
+          no-caps
+        >
+          <q-badge
+            color="red"
+            floating
+            transparent
+          >new</q-badge>
+        </q-btn>
       </q-toolbar>
+      <router-view
+        name="tabs"
+        ref="mainTab"
+      />
     </q-header>
 
     <q-drawer
       v-model="leftDrawerOpen"
-      show-if-above
       bordered
-      content-class="bg-grey-2"
     >
+      <!-- TODO:: move drawer items to a separate file -->
       <q-list>
-        <q-item-label header>Essential Links</q-item-label>
         <q-item
           clickable
-          tag="a"
-          target="_blank"
-          href="https://quasar.dev"
+          to="/"
         >
           <q-item-section avatar>
-            <q-icon name="school" />
+            <q-icon name="home" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
+            <q-item-label>Home</q-item-label>
+            <q-item-label caption>Home</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item
-          clickable
-          tag="a"
-          target="_blank"
-          href="https://github.quasar.dev"
-        >
-          <q-item-section avatar>
-            <q-icon name="code" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Github</q-item-label>
-            <q-item-label caption>github.com/quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item
-          clickable
-          tag="a"
-          target="_blank"
-          href="https://chat.quasar.dev"
-        >
-          <q-item-section avatar>
-            <q-icon name="chat" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Discord Chat Channel</q-item-label>
-            <q-item-label caption>chat.quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item
-          clickable
-          tag="a"
-          target="_blank"
-          href="https://forum.quasar.dev"
-        >
-          <q-item-section avatar>
-            <q-icon name="record_voice_over" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Forum</q-item-label>
-            <q-item-label caption>forum.quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item
-          clickable
-          tag="a"
-          target="_blank"
-          href="https://twitter.quasar.dev"
-        >
-          <q-item-section avatar>
-            <q-icon name="rss_feed" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Twitter</q-item-label>
-            <q-item-label caption>@quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item
-          clickable
-          tag="a"
-          target="_blank"
-          href="https://facebook.quasar.dev"
-        >
-          <q-item-section avatar>
-            <q-icon name="public" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Facebook</q-item-label>
-            <q-item-label caption>@QuasarFramework</q-item-label>
-          </q-item-section>
-        </q-item>
+        <q-separator />
+        <base-drawer />
       </q-list>
     </q-drawer>
 
+    <q-footer
+      class="text-white"
+      reveal
+      v-if="false"
+    >
+      <q-toolbar>
+        <q-toolbar-title>
+          <q-avatar>
+            <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
+          </q-avatar>Title
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-footer>
+
     <q-page-container>
-      <router-view />
+      <transition
+        enter-active-class="animated fadeInLeft"
+        leave-active-class="animated fadeOutRight"
+        mode="out-in"
+      >
+        <router-view />
+      </transition>
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
+import BaseDrawer from 'components/Drawers/BaseDrawer'
+import { openURL } from 'quasar'
+import { mapFields } from 'assets/utils/vuex-utils'
 export default {
   name: 'MyLayout',
-
+  components: {
+    BaseDrawer
+  },
   data () {
     return {
-      leftDrawerOpen: false
+      leftDrawerOpen: this.$q.platform.is.desktop,
+      hasTabs: false
     }
   },
-  created () {
-    console.log('hey layout.vue')
+  computed: {
+    ...mapFields('commons', ['pageMeta'])
+  },
+  methods: {
+    openURL,
+    touchHeld () {
+      console.log('Touch held!')
+      alert('Touch held!')
+    },
+    checkTabs () {
+      this.$nextTick(() => {
+        this.hasTabs = !!(this.$refs.toolbarTab || this.$refs.mainTab)
+        // if (this.$refs.toolbarTab) {
+        //   this.hasTabs = true
+        // } else if (this.$refs.mainTab) {
+        //   this.hasTabs = true
+        // } else {
+        //   this.hasTabs = false
+        // }
+        console.log('hasTabs =>', this.hasTabs)
+      })
+    }
+  },
+  mounted () {
+    console.log(this.$q.platform.is.desktop)
+    this.checkTabs()
+  },
+  updated: function () {
+    this.checkTabs()
   }
 }
 </script>
+
+<style scoped>
+.toolbar-grad {
+  background-image: linear-gradient(to bottom right, #ec268f 0%, #bc1e72 75%);
+}
+</style>

@@ -2,16 +2,17 @@
   <q-page class="flex flex-center">
     <div class="column justify-center items-center">
       <div>
-        <h5>Laravel 5.7 (as API backend) + Quasar PWA (Vuejs)</h5>
+        <h5>Quasar Laravel Integration</h5>
       </div>
       <div>
-        <!-- <img
+        <img
           alt="Quasar logo"
           src="~assets/quasar-logo-full.svg"
-        > -->
+        >
       </div>
       <div>
-        <p>Make an api request to Laravel <i>/api/test</i><br>
+        <p>
+          Make an api request to Laravel <i>/api/test</i><br />
           <sub>Before you need to run <i>artisan serve</i></sub>
         </p>
         <q-btn
@@ -24,15 +25,14 @@
       </div>
       <div>
         <code>
-          {{response}}
+          {{ response }}
         </code>
       </div>
     </div>
   </q-page>
 </template>
 
-<style>
-</style>
+<style></style>
 
 <script>
 export default {
@@ -77,11 +77,13 @@ export default {
       //   let response
       //   let color = 'negative'
       this.loading = true
-      this.$axios.get('/test')
+      this.$axios
+        .get('/test')
         .then(res => {
           console.log('res', res)
           this.loading = false
-        }).catch(err => {
+        })
+        .catch(err => {
           this.loading = false
           console.log('err', err)
         })
