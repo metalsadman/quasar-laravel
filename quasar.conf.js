@@ -51,12 +51,12 @@ module.exports = function (ctx) {
             })
           )
         }
-      },
-      env: {
-        api: JSON.stringify(
-          ctx.dev ? '/api' : 'http://some.endpoint/api' // production end-point
-        )
       }
+      // env: {
+      //   api: JSON.stringify(
+      //     ctx.dev ? '/api' : 'http://some.endpoint/api' // production end-point
+      //   )
+      // }
     },
     devServer: {
       // https: true,
