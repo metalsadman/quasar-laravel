@@ -14,7 +14,13 @@ yarn-debug.log*
 yarn-error.log*
 
 #laravel folders/files
-/public
+/public/css
+/public/fonts
+/public/img
+/public/js
+/public/statics
+/public/storage
+/public/index.html
 /storage/*.key
 /vendor
 /.idea
