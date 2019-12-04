@@ -1,4 +1,19 @@
-/node_modules
+.quasar
+.DS_Store
+.thumbs.db
+node_modules
+/dist
+/src-cordova/node_modules
+/src-cordova/platforms
+/src-cordova/plugins
+/src-cordova/www
+/src-bex/www
+/src-bex/js/core
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+#laravel folders/files
 /public
 /storage/*.key
 /vendor
@@ -11,18 +26,10 @@ npm-debug.log
 yarn-error.log
 .env
 
-.quasar
-.DS_Store
-.thumbs.db
-/dist
-/src-cordova/platforms
-/src-cordova/plugins
-/src-cordova/www
-yarn-debug.log*
-
 # Editor directories and files
+.idea
+.vscode
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.sublime-workspace
