@@ -1,34 +1,36 @@
 {
-  "name": "laravel-quasar-pwa-template",
-  "version": "1.0.1",
+  "name": "test-q",
+  "version": "0.0.1",
   "description": "A Quasar Framework app",
   "productName": "Quasar App",
   "cordovaId": "org.cordova.quasar.app",
-  "author": "Your Author",
+  "capacitorId": "",
+  "author": "renren1 <renren@ixbase.net>",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@quasar/extras": "^1.3.3",
+    "@quasar/extras": "^1.0.0",
     "axios": "0.19.0",
-    "quasar": "^1.4.3",
+    "quasar": "^1.5.4",
     "vee-validate": "2.2.13",
     "vue-content-loader": "0.2.2",
     "vue-signature-pad": "1.1.14",
+    "vue-i18n": "^8.0.0",
     "vuelidate": "0.7.4",
     "vuex-persistedstate": "2.5.4"
   },
   "devDependencies": {
-    "@quasar/app": "^1.2.4",
+    "@quasar/app": "^1.3.3",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
-    "copy-webpack-plugin": "^4.5.2",
+    "copy-webpack-plugin": "^5.0.5",
     "eslint": "^5.10.0",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-vue": "^5.0.0",
-    "symlink-webpack-plugin": "0.0.4"
+    "symlink-webpack-plugin": "^0.2.0"
   },
   "engines": {
     "node": ">= 8.9.0",

@@ -1,4 +1,4 @@
-# Laravel 5.7 + Quasar Framework v1.+
+# Laravel 6x + Quasar Framework v1.+
 
 ## Setup
 
@@ -25,7 +25,9 @@ $ php artisan key:generate
 # set privileges to node_modules folder (optional)
 #$ chmod -R u+x node_modules/
 ```
+
 ## Dev
+
 ```bash
 #first start the back-end (don't use the artisan's serve url in this mode)
 $ php artisan serve
@@ -34,7 +36,9 @@ $ php artisan serve
 
 $ quasar dev | -m <mode>
 ```
+
 ## Production
+
 ```bash
 #build for production (it'll generate and copy the necessary files)
 
@@ -42,7 +46,7 @@ $ quasar build | -m <mode>
 $ php artisan serve
 ```
 
-> `Check out `quasar.conf.js``
+> `Check out`quasar.conf.js``
 
 ## Laravel License
 
