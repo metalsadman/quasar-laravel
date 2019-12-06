@@ -15,7 +15,7 @@
       <base-text-field
         v-model="url"
         label="Test URL"
-        hint="Enter endpoint for GET request. ie. https://codesandbox.io/s/b9g95"
+        hint="Enter endpoint for GET request. ie. https://b9g95.sse.codesandbox.io/"
         :val="$v.url"
         @input="$v.url.$touch"
         @blur="$v.url.$touch"
