@@ -14,11 +14,11 @@
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "0.19.0",
-    "quasar": "^1.5.4",
+    "quasar": "^1.5.5",
     "vee-validate": "2.2.13",
     "vue-content-loader": "0.2.2",
-    "vue-signature-pad": "1.1.14",
     "vue-i18n": "^8.0.0",
+    "vue-signature-pad": "1.1.14",
     "vuelidate": "0.7.4",
     "vuex-persistedstate": "2.5.4"
   },
