@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { tabs } from '../route'
+import { tabs } from '../routes'
 console.log('tabs', tabs)
 export default {
   data: () => ({

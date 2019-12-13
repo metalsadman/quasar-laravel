@@ -4,9 +4,9 @@
     <q-table
       :grid="mode === 'grid'"
       :hide-header="mode === 'grid'"
-      :data="data"
+      :data="localData"
       :columns="columns"
-      :row-key="$attrs['row-key'] ? $attrs['row-key'] : '__index'"
+      :row-key="$attrs['row-key'] ? $attrs['row-key'] : '$_index'"
       :visible-columns="visibleColumns"
       :loading="innerLoading"
       :rows-per-page-options="rowOptions"
@@ -18,7 +18,7 @@
       v-bind="$attrs"
       :color="theme"
       v-on="$listeners"
-      class="relative-position"
+      :class="`relative-position ${$q.dark.isActive ? 'dark-fs' : 'light-fs'}`"
       ref="myTable"
       id="table1"
       :table-class="computedTableClass"
@@ -33,15 +33,11 @@
           <div
             v-if="$attrs.title"
             class="col-12 text-center text-h5 q-pb-md"
-          >
-            {{ $attrs.title }}
-          </div>
+          >{{ $attrs.title }}</div>
           <div
             v-if="$attrs.subTitle"
             class="col-12 text-center text-caption"
-          >
-            {{ $attrs.subTitle }}
-          </div>
+          >{{ $attrs.subTitle }}</div>
         </div>
         <div :class="
             `row col-12${
@@ -81,9 +77,7 @@
               <q-tooltip
                 :disable="$q.platform.is.mobile"
                 v-close-popup
-              >
-                {{ toggleSelectionMode ? 'Multiple' : 'Single' }}
-              </q-tooltip>
+              >{{ toggleSelectionMode ? 'Multiple' : 'Single' }}</q-tooltip>
             </q-toggle>
             <q-select
               :color="theme"
@@ -179,7 +173,7 @@
           :style="props.selected ? 'transform: scale(0.95);' : ''"
         >
           <q-card
-            :class="props.selected ? 'bg-grey-2' : ''"
+            :class="`${props.selected ? $q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2' : ''}`"
             @click.native="props.selected = !props.selected"
           >
             <!-- v-touch-pan.prevent.mouse="handlePan" -->
@@ -196,9 +190,7 @@
                 <div
                   v-if="!toggleSelectionMode"
                   class="ellipsis-2-lines"
-                >
-                  {{ props.cols[0].value }}
-                </div>
+                >{{ props.cols[0].value }}</div>
               </q-card-section>
               <q-separator />
               <q-card-section class="q-pa-none">
@@ -212,17 +204,13 @@
                         <q-item-label
                           lines="1"
                           caption
-                        >
-                          {{ col.label }}
-                        </q-item-label>
+                        >{{ col.label }}</q-item-label>
                       </q-item-section>
                       <q-item-section>
                         <q-item-label
                           lines="1"
                           class="text-right"
-                        >
-                          {{ col.value }}
-                        </q-item-label>
+                        >{{ col.value }}</q-item-label>
                       </q-item-section>
                     </q-item>
                   </template>
@@ -240,9 +228,11 @@
                     <q-item-label
                       lines="1"
                       caption
-                    >{{
+                    >
+                      {{
                       col.label
-                    }}</q-item-label>
+                      }}
+                    </q-item-label>
                     <q-item-label :lines="
                         typeof col.value === 'string' &&
                         (col.value.includes(' ') || col.value.includes('-'))
@@ -275,9 +265,11 @@
                     :disable="innerLoading"
                     v-close-popup
                   >
-                    <q-item-section>{{
+                    <q-item-section>
+                      {{
                       capitalize(`${action}`)
-                    }}</q-item-section>
+                      }}
+                    </q-item-section>
                   </q-item>
                 </template>
               </q-list>
@@ -312,7 +304,7 @@
           @[computedNativeHover].native="props.selected = !props.selected"
           @[computedNativeClick].native="props.selected = !props.selected"
           @keyup.enter.native.stop.prevent="
-            $refs.myTable.isRowSelected(props.row.__index)
+            $refs.myTable.isRowSelected(props.row.$_index)
           "
           ref="myRef"
         >
@@ -332,7 +324,7 @@
             :key="col.name"
             :props="props"
           >
-            <template>{{ col.value }}</template>
+            {{ col.value }}
             <q-menu
               touch-position
               v-if="
@@ -354,9 +346,11 @@
                     clickable
                     v-close-popup
                   >
-                    <q-item-section>{{
+                    <q-item-section>
+                      {{
                       capitalize(`${action}`)
-                    }}</q-item-section>
+                      }}
+                    </q-item-section>
                   </q-item>
                 </template>
               </q-list>
@@ -590,7 +584,8 @@ export default {
       panning: false,
       active: false,
       currentRow: { key: null },
-      previousRow: { key: null }
+      previousRow: { key: null },
+      localData: []
     }
   },
   computed: {
@@ -668,6 +663,10 @@ export default {
     }
   },
   methods: {
+    setRowIndex () {
+      this.localData = this.$attrs['row-key'] ? this.data : this.data.map((v, i) => ({ ...v, $_index: i }))
+      console.log('data w/index =>', this.data)
+    },
     capitalize,
     notify (notif) {
       this.$q.notify({
@@ -709,6 +708,7 @@ export default {
                 // parentTr.selected = false
               }
             )
+
             console.log(b)
             // el.classList.add('highlight')
           })
@@ -740,6 +740,7 @@ export default {
             // }
           })
         })
+        console.log(a, c)
 
         document.addEventListener('mouseup', ev => {
           this.active = false
@@ -752,7 +753,6 @@ export default {
           )
           console.log(b)
         })
-        console.log('hey', a, c)
       })
     }
   },
@@ -787,10 +787,13 @@ export default {
     },
     data (v) {
       this.selected = []
-      // console.log('dynamic-table', this.data)
+      console.log('dynamic-table', v)
     },
     computedRowSelectionType (val) {
       console.log('event', val)
+    },
+    mode (v) {
+      this.colSelector()
     }
   },
   mounted () {
@@ -831,6 +834,8 @@ export default {
 
     const tableEl = this.$refs.myTable
     console.log('tableEl', tableEl)
+    // this.$attrs['row-key'] || this.setRowIndex()
+    this.setRowIndex()
   },
   beforeDestroy () {
     // clear the dom listeners
@@ -838,32 +843,31 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-.fullscreen {
-  background: white;
-}
+<style lang="sass" scoped>
+.dark-fs
+  &.fullscreen
+    background: #121212
 
-.grid-style-transition {
-  transition: transform 0.3s;
-}
+.light-fs
+  &.fullscreen
+    background: white
 
-.highlight {
-  background-color: $primary;
-}
+.grid-style-transition
+  transition: transform 0.3s
 
-.myClass {
-  tbody tr {
-    &:hover {
-      background: none;
-    }
-  }
-}
+.highlight
+  background-color: $primary
+  color: white
 
-.dragClass {
-  tbody td.highlighted {
-    background-color: #999;
-  }
-}
+.myClass
+  tbody tr
+    &:hover
+      background: none
+
+.dragClass
+  tbody td.highlighted
+    background-color: #999
+
 </style>
 
 <!--style lang="stylus" scoped>
