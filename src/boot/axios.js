@@ -100,7 +100,7 @@ const appMode = type =>
 export default ({ Vue, store }) => {
   // const url = store.state['commons'].targetUrl || appMode('vhost')
   // set axios defaults
-  axios.defaults.baseURL = appMode(process.env.dev ? 'laravel' : 'production')
+  axios.defaults.baseURL = appMode(process.env.DEV ? 'laravel' : 'production')
   axios.defaults.headers.post['Content-Type'] = 'application/json'
   axios.defaults.timeout = 2000
   // add axios generic interceptor
