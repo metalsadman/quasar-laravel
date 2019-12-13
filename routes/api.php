@@ -34,3 +34,6 @@ Route::group(['middleware' => 'auth:api'], function () {
         return $request->user();
     });
 });
+
+Route::post('login', 'AuthController@login');
+Route::post('register', 'AuthController@register');

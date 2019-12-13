@@ -140,7 +140,7 @@ export default {
 </script>
 
 <style scoped>
-.toolbar-grad {
+/* .toolbar-grad {
   background-image: linear-gradient(to bottom right, #ec268f 0%, #bc1e72 75%);
-}
+} */
 </style>

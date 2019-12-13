@@ -1,9 +1,9 @@
-import apcRoutes from './ApiCommunication/route'
-import teRoutes from './TableExtension/route'
-import qtpRoutes from './QuasarThirdParty/route'
+import ApiCom from './ApiCommunication/routes'
+import Tables from './TableExtension/routes'
+import ThirdParty from './QuasarThirdParty/routes'
 
 export default {
-  apcRoutes,
-  teRoutes,
-  qtpRoutes
+  ApiCom,
+  Tables,
+  ThirdParty
 }

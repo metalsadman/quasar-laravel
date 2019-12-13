@@ -18,7 +18,7 @@
       v-bind="$attrs"
       :color="theme"
       v-on="$listeners"
-      class="relative-position"
+      :class="`relative-position ${$q.dark.isActive ? 'dark-fs' : 'light-fs'}`"
       ref="myTable"
       id="table1"
       :table-class="computedTableClass"
@@ -173,7 +173,7 @@
           :style="props.selected ? 'transform: scale(0.95);' : ''"
         >
           <q-card
-            :class="props.selected ? 'bg-grey-2' : ''"
+            :class="`${props.selected ? $q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2' : ''}`"
             @click.native="props.selected = !props.selected"
           >
             <!-- v-touch-pan.prevent.mouse="handlePan" -->
@@ -324,7 +324,7 @@
             :key="col.name"
             :props="props"
           >
-            <template>{{ col.value }}</template>
+            {{ col.value }}
             <q-menu
               touch-position
               v-if="
@@ -791,6 +791,9 @@ export default {
     },
     computedRowSelectionType (val) {
       console.log('event', val)
+    },
+    mode (v) {
+      this.colSelector()
     }
   },
   mounted () {
@@ -840,32 +843,31 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-.fullscreen {
-  background: white;
-}
+<style lang="sass" scoped>
+.dark-fs
+  &.fullscreen
+    background: #121212
 
-.grid-style-transition {
-  transition: transform 0.3s;
-}
+.light-fs
+  &.fullscreen
+    background: white
 
-.highlight {
-  background-color: $primary;
-}
+.grid-style-transition
+  transition: transform 0.3s
 
-.myClass {
-  tbody tr {
-    &:hover {
-      background: none;
-    }
-  }
-}
+.highlight
+  background-color: $primary
+  color: white
 
-.dragClass {
-  tbody td.highlighted {
-    background-color: #999;
-  }
-}
+.myClass
+  tbody tr
+    &:hover
+      background: none
+
+.dragClass
+  tbody td.highlighted
+    background-color: #999
+
 </style>
 
 <!--style lang="stylus" scoped>
