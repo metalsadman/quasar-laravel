@@ -17,14 +17,6 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::get('/test', function () {
-    return response()->json([
-        'data' => 'Test api response',
-        'msg' => 'Laravel api successful.',
-        'success' => 1,
-    ]);
-});
-
 Route::post('/upload1', 'UploadController@upload');
 Route::resource('upload', 'UploadController');
 
@@ -33,6 +25,15 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    Route::get('/test', function () {
+        return response()->json([
+            'data' => 'Test api response',
+            'msg' => 'Laravel api successful.',
+            'success' => 1,
+        ]);
+    });
+
 });
 
 Route::post('login', 'AuthController@login');

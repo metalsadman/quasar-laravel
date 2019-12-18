@@ -2,48 +2,44 @@
 import routeModules from 'features/routes-index.js'
 const routes = [
   {
-    path: '/',
+    path: '/home',
     component: () => import('layouts/MyLayout.vue'),
     children: [
       // { path: '', component: () => import('pages/Index.vue') },
       {
         path: '',
         meta: {
-          title: 'Quasar v1 Samples'
+          title: 'Quasar v1 Samples',
+          needAuth: true
         },
         component: () => import('pages/Index.vue')
-      },
-      {
-        path: 'autocomplete',
-        meta: {
-          title: 'Autocomplete'
-        },
-        component: () => import('pages/AutocompleteSample/Autocomplete.vue')
-      },
-      {
-        path: 'component-samples',
-        meta: {
-          title: 'Select Extension Sample'
-        },
-        component: () => import('pages/ComponentSamples/SelectSample.vue')
-      },
-
-      {
-        path: 'dialog-sample',
-        meta: {
-          title: 'Form in Dialog sample'
-        },
-        component: () => import('pages/ComponentSamples/Samples.vue')
       }
-      // {
-      //   path: 'dropdown-extension',
-      //   meta: {
-      //     title: 'QBtnDropdown Test'
-      //   },
-      //   component: () =>
-      //     import('pages/ComponentSamples/QBtnDropdownExtension.vue')
-      // }
     ]
+  },
+  {
+    path: '/autocomplete',
+    meta: {
+      title: 'Autocomplete'
+    },
+    component: () => import('layouts/MyLayout.vue'),
+    children: [{ path: '', component: () => import('pages/AutocompleteSample/Autocomplete.vue') }]
+  },
+  {
+    path: '/component-samples',
+    meta: {
+      title: 'Select Extension Sample'
+    },
+    component: () => import('layouts/MyLayout.vue'),
+    children: [{ path: '', component: () => import('pages/ComponentSamples/SelectSample.vue') }]
+  },
+
+  {
+    path: '/dialog-sample',
+    meta: {
+      title: 'Form in Dialog sample'
+    },
+    component: () => import('layouts/MyLayout.vue'),
+    children: [{ path: '', component: () => import('pages/ComponentSamples/Samples.vue') }]
   },
   {
     path: '/form-validations',
@@ -55,7 +51,7 @@ const routes = [
       {
         path: '',
         meta: {
-          title: 'Vuelidate Sample'
+          title: 'External Form Validationss'
         },
         components: {
           default: () => import('pages/FormSamples/Index.vue'),

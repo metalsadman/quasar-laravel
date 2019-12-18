@@ -50,7 +50,7 @@
       <q-list>
         <q-item
           clickable
-          to="/"
+          to="/home"
         >
           <q-item-section avatar>
             <q-icon name="home" />
