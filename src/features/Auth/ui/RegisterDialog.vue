@@ -114,15 +114,18 @@
 <script>
 import { log } from 'assets/utils/app-utils'
 import { required, email, sameAs } from 'vuelidate/lib/validators'
+const fields = () => ({
+  email: null,
+  password: null,
+  confirm_password: null,
+  name: null
+})
 export default {
   data () {
     return {
       loading: false,
       form: {
-        email: null,
-        password: null,
-        confirm_password: null,
-        name: null
+        ...fields()
       }
     }
   },
@@ -140,7 +143,7 @@ export default {
     },
     show () {
       // this.form.url = null
-      this.form.password = null
+      this.form = fields()
       this.$refs.reg.show()
       this.$nextTick(() => {
         log('IS FORM AVAILABLE?? ', !!this.$refs.mainForm)
@@ -158,25 +161,26 @@ export default {
       // console.log('RESP IP SETTINS', ))
       // this.$store.dispatch('commons/updateSettings', params)
       this.loading = true
-      this.$store.dispatch('auth/updateSettings', this.form)
+      this.$store.dispatch('auth/register', this.form)
         .then(res => {
           console.log('res', res)
-          this.$q.notify({
-            icon: 'mdi-check-circle-outline',
-            message: res,
-            timeout: 1000,
-            color: 'positive'
-          })
-          this.$emit('settings-status', true)
-          this.$refs.settings.hide()
+          // this.$q.notify({
+          //   icon: 'mdi-check-circle-outline',
+          //   message: res,
+          //   timeout: 1000,
+          //   color: 'positive'
+          // })
+          this.$emit('register-status', true)
+          this.$refs.reg.hide()
         })
         .catch(e => {
-          this.$q.notify({
-            color: 'negative',
-            icon: 'mdi-alert-circle-outline',
-            message: e,
-            timeout: 1000
-          })
+          console.log(e)
+          // this.$q.notify({
+          //   color: 'negative',
+          //   icon: 'mdi-alert-circle-outline',
+          //   message: e,
+          //   timeout: 1000
+          // })
         })
         .finally(_ => { this.loading = false })
     }

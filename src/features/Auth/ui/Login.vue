@@ -75,7 +75,7 @@
                 <q-btn
                   flat
                   dense
-                  @click="showIpSettings"
+                  @click="showRegistrationDialog"
                   color="blue-grey-1"
                   label="Register"
                 >
@@ -98,7 +98,7 @@
                   round
                   v-if="false"
                   icon="mdi-settings"
-                  @click="showIpSettings"
+                  @click="showRegistrationDialog"
                   color="blue-grey-1"
                 >
                   <q-tooltip>
@@ -172,7 +172,7 @@
           </div>
         </transition>
 
-        <register ref="ipSettings" />
+        <register ref="registerDialog" />
 
       </q-page>
     </q-page-container>
@@ -213,8 +213,8 @@ export default {
     }
   },
   methods: {
-    showIpSettings () {
-      this.$refs.ipSettings.show()
+    showRegistrationDialog () {
+      this.$refs.registerDialog.show()
     },
     showLogoMethod () {
       this.showLogo = true

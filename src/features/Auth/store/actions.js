@@ -19,3 +19,14 @@ export const login = async ({ commit, dispatch, getters }, payload) => {
     throw e
   }
 }
+
+export const register = async ({ commit, dispatch, getters }, payload) => {
+  try {
+    log('login action', payload)
+    const res = await axios.post('/register', payload)
+    log('login res', res)
+  } catch (e) {
+    process.env.DEV && log(e)
+    throw e
+  }
+}

@@ -67,11 +67,30 @@ const defaultInterceptor = store => {
         'color: red; font-weight: bold;',
         error.response || error.message
       )
+      let message = ''
+      if (error.response !== undefined) {
+        if (typeof error.response.data.message === 'object') {
+          console.log('message', error.response.data.message)
+          // message = error.response.message
+          let messages = error.response.data.message
+          for (let k in messages) {
+            console.log(messages[k])
+            if (Array.isArray(messages[k])) {
+              message = messages[k].join(' ')
+            }
+          }
+        } else {
+          message = error.response.data.message
+        }
+      } else {
+        message = error.message
+      }
+
       notif()
       notif = Notify.create({
         color: 'negative',
         icon: 'mdi-alert-circle-outline',
-        message: error.response ? error.response.data.message : error.message,
+        message: message,
         timeout: 2000
       })
       // return the error object
