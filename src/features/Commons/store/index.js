@@ -2,6 +2,7 @@ import { getField, updateField } from 'assets/utils/vuex-utils'
 // import { routerInstance } from 'boot/router'
 // a function returning the state objects useful for reinitialization
 const commonState = () => ({
+  isAuth: false,
   pageMeta: null
 })
 

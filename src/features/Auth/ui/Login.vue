@@ -26,11 +26,11 @@
             </div>
             <form>
               <base-text-field
-                :val="$v.form.username"
+                :val="$v.form.email"
                 filled
-                v-model="form.username"
+                v-model="form.email"
                 label="Username"
-                @blur="$v.form.username.$touch"
+                @blur="$v.form.email.$touch"
                 @keyup.enter="login"
                 normalize-bottom
                 dark
@@ -193,9 +193,8 @@ export default {
     return {
       email: '',
       form: {
-        username: '',
-        password: '',
-        imei: null
+        email: '',
+        password: ''
       },
       loading: false,
       localNotif: () => void 0,
@@ -209,7 +208,7 @@ export default {
   },
   validations: {
     form: {
-      username: { required },
+      email: { required },
       password: { required }
     }
   },
@@ -235,44 +234,27 @@ export default {
         return
       }
 
-      if (!await this.$store.dispatch('commons/getUsers').catch(_ => void 0)) {
-        return
-      }
-
-      const imei = await this.$store.dispatch('commons/getImei', this.form.username)
-        .catch(err => {
-          this.localNotif()
-          this.localNotif = this.$q.notify({
-            color: 'negative',
-            icon: 'mdi-alert',
-            message: err,
-            timeout: 1500
-          })
-          return false
-        })
-
-      if (!imei) return
-
-      this.form.imei = imei
+      console.log('login', this.form)
       this.loading = true
-      this.$store.dispatch('commons/login', this.form)
+      await this.$store.dispatch('auth/login', this.form)
         .then(res => {
-          this.localNotif()
-          this.localNotif = this.$q.notify({
-            color: 'positive',
-            icon: 'mdi-check',
-            message: res,
-            timeout: 1500
-          })
+          // this.localNotif()
+          // this.localNotif = this.$q.notify({
+          //   color: 'positive',
+          //   icon: 'mdi-check',
+          //   message: res,
+          //   timeout: 1500
+          // })
           this.$router.replace('/home')
         }).catch(err => {
-          this.localNotif()
-          this.localNotif = this.$q.notify({
-            color: 'negative',
-            icon: 'mdi-alert',
-            message: err,
-            timeout: 1000
-          })
+          console.log(err)
+          // this.localNotif()
+          // this.localNotif = this.$q.notify({
+          //   color: 'negative',
+          //   icon: 'mdi-alert',
+          //   message: err,
+          //   timeout: 1000
+          // })
         }).finally(_ => {
           this.loading = false
         })

@@ -50,7 +50,7 @@ const defaultInterceptor = store => {
       notif = Notify.create({
         color: 'positive',
         icon: 'mdi-check',
-        message: response.data.msg,
+        message: response.data.message,
         timeout: 1500
       })
       return response
@@ -71,7 +71,7 @@ const defaultInterceptor = store => {
       notif = Notify.create({
         color: 'negative',
         icon: 'mdi-alert-circle-outline',
-        message: error.response ? error.response.data.msg : error.message,
+        message: error.response ? error.response.data.message : error.message,
         timeout: 2000
       })
       // return the error object
@@ -107,10 +107,10 @@ export default ({ Vue, store }) => {
   defaultInterceptor(store)
   // process.env.DEV && defaultInterceptor()
   // customInterceptor(store)
-  // const token = store.getters['commons/getField']('token')
-  // if (token) {
-  //   setAuthHeader(token)
-  // }
+  const token = store.getters['auth/getField']('token')
+  if (token) {
+    setAuthHeader(token)
+  }
 
   // set custom header for the client or device information
   // const deviceInfo = store.getters['commons/getField']('deviceInfo')

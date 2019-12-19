@@ -54,11 +54,11 @@
             </div>
             <div class="col-12">
               <base-text-field
-                :val="$v.form.confirmPassword"
-                @input="$v.form.confirmPassword.$touch"
-                @blur="$v.form.confirmPassword.$touch"
+                :val="$v.form.confirm_password"
+                @input="$v.form.confirm_password.$touch"
+                @blur="$v.form.confirm_password.$touch"
                 outlined
-                v-model="form.confirmPassword"
+                v-model="form.confirm_password"
                 label="Confirm Password"
                 type="password"
                 @keyup.enter="ok"
@@ -121,7 +121,7 @@ export default {
       form: {
         email: null,
         password: null,
-        confirmPassword: null,
+        confirm_password: null,
         name: null
       }
     }
@@ -130,7 +130,7 @@ export default {
     form: {
       email: { required, email },
       password: { required },
-      confirmPassword: { required, sameAs },
+      confirm_password: { required, sameAsPassword: sameAs('password') },
       name: { required }
     }
   },
@@ -152,16 +152,13 @@ export default {
       if (this.$v.form.$error) {
         return
       }
-      let params = {
-        baseURL: this.urlPrefix + this.form.url + this.urlSuffix,
-        pswd: this.form.pswd
-      }
+
       // this.$refs.settings.hide()
-      console.log('IP SETTINS', params)
+      console.log('IP SETTINS', this.form)
       // console.log('RESP IP SETTINS', ))
       // this.$store.dispatch('commons/updateSettings', params)
       this.loading = true
-      this.$store.dispatch('commons/updateSettings', params)
+      this.$store.dispatch('auth/updateSettings', this.form)
         .then(res => {
           console.log('res', res)
           this.$q.notify({
