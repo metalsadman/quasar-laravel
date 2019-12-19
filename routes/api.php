@@ -27,11 +27,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     });
 
     Route::get('/test', function () {
-        return response()->json([
-            'data' => 'Test api response',
-            'msg' => 'Laravel api successful.',
-            'success' => 1,
-        ]);
+        return response()->success('Laravel api successful.',
+            ['data' => 'Test api response']);
     });
 
 });

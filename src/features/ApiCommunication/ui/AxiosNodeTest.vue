@@ -56,7 +56,7 @@ export default {
         .get('/test')
         .then(res => {
           this.loading = false
-          this.testResponse = res.data.msg
+          this.testResponse = res.data.message
           // this.notif = this.$q.notify({ color: 'positive', message: 'Server responded' })
         })
         .catch(e => {
