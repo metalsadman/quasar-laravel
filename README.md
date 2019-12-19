@@ -49,7 +49,16 @@ $ php artisan serve
 > `Check out`quasar.conf.js``
 
 ## Sample App
->Examples in this repo (except auth implementations) are taken from my codesandbox examples https://codesandbox.io/s/quasar-v1-samples-0ybb3
+
+> Examples in this repo (except auth implementations) are taken from my codesandbox examples https://codesandbox.io/s/quasar-v1-samples-0ybb3
+
+```bash
+#migration
+$ php artisan migrate
+#install laravel passport
+$ php artisan passport:install
+```
+
 ## Laravel License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
