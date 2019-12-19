@@ -18,9 +18,9 @@ class AuthController extends Controller
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
             $success['token'] = $user->createToken('myApp')->accessToken;
-            return response()->json(['success' => $success], 200);
+            return response()->success('Login Successful', $success, 200);
         } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+            return response()->error('Login failed. Invalid Username or Password.', null, 401);
         }
     }
     /**
@@ -31,18 +31,19 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|unique:users|email',
             'password' => 'required',
             'confirm_password' => 'required|same:password',
         ]);
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 401);
+            return response()->error($validator->errors(), null, 400);
         }
+
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $success['token'] = $user->createToken('myApp')->accessToken;
-        $success['name'] = $user->name;return response()->json(['success' => $success], 200);
+        $success['name'] = $user->name;return response()->success('Registration successfull.', $success, 200);
 
     }
 }

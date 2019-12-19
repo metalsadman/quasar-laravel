@@ -23,7 +23,7 @@
     "vuex-persistedstate": "2.5.4"
   },
   "devDependencies": {
-    "@quasar/app": "^1.4.0",
+    "@quasar/app": "^1.4.1",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
     "copy-webpack-plugin": "^5.0.5",

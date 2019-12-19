@@ -50,7 +50,7 @@ const defaultInterceptor = store => {
       notif = Notify.create({
         color: 'positive',
         icon: 'mdi-check',
-        message: response.data.msg,
+        message: response.data.message,
         timeout: 1500
       })
       return response
@@ -67,11 +67,30 @@ const defaultInterceptor = store => {
         'color: red; font-weight: bold;',
         error.response || error.message
       )
+      let message = ''
+      if (error.response !== undefined) {
+        if (typeof error.response.data.message === 'object') {
+          console.log('message', error.response.data.message)
+          // message = error.response.message
+          let messages = error.response.data.message
+          for (let k in messages) {
+            console.log(messages[k])
+            if (Array.isArray(messages[k])) {
+              message = messages[k].join(' ')
+            }
+          }
+        } else {
+          message = error.response.data.message
+        }
+      } else {
+        message = error.message
+      }
+
       notif()
       notif = Notify.create({
         color: 'negative',
         icon: 'mdi-alert-circle-outline',
-        message: error.response ? error.response.data.msg : error.message,
+        message: message,
         timeout: 2000
       })
       // return the error object
@@ -100,17 +119,17 @@ const appMode = type =>
 export default ({ Vue, store }) => {
   // const url = store.state['commons'].targetUrl || appMode('vhost')
   // set axios defaults
-  axios.defaults.baseURL = appMode(process.env.dev ? 'laravel' : 'production')
+  axios.defaults.baseURL = appMode(process.env.DEV ? 'laravel' : 'production')
   axios.defaults.headers.post['Content-Type'] = 'application/json'
   axios.defaults.timeout = 2000
   // add axios generic interceptor
   defaultInterceptor(store)
   // process.env.DEV && defaultInterceptor()
   // customInterceptor(store)
-  // const token = store.getters['commons/getField']('token')
-  // if (token) {
-  //   setAuthHeader(token)
-  // }
+  const token = store.getters['auth/getField']('token')
+  if (token) {
+    setAuthHeader(token)
+  }
 
   // set custom header for the client or device information
   // const deviceInfo = store.getters['commons/getField']('deviceInfo')

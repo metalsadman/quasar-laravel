@@ -30,7 +30,7 @@ export default function ({ store }) {
     // console.log('to =>', to, 'from =>', from)
     if (to.matched.some(record => record.meta.needAuth)) {
       // if not athenticated
-      if (!store.getters['commons/getField']('token')) {
+      if (!store.getters['commons/getField']('isAuth')) {
         notif()
         notif = Notify.create({
           color: 'negative',

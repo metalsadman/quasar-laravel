@@ -50,7 +50,7 @@
       <q-list>
         <q-item
           clickable
-          to="/"
+          to="/home"
         >
           <q-item-section avatar>
             <q-icon name="home" />
@@ -62,6 +62,19 @@
         </q-item>
         <q-separator />
         <base-drawer />
+        <q-separator />
+        <q-item
+          clickable
+          @click="logout()"
+          v-ripple
+        >
+          <q-item-section avatar>
+            <q-icon name="mdi-logout-variant" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Logout</q-item-label>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
@@ -126,6 +139,30 @@ export default {
         //   this.hasTabs = false
         // }
         console.log('hasTabs =>', this.hasTabs)
+      })
+    },
+    logout () {
+      this.$q.dialog({
+        title: 'Logout',
+        message: 'Are you sure you want to logout?',
+        ok: {
+          flat: true,
+          color: 'warning'
+        },
+        cancel: {
+          color: 'secondary',
+          flat: true
+        },
+        persistent: true
+      }).onOk(() => {
+        // reset states
+        // this.$store.dispatch('resetAllState')
+        this.$store.commit('commons/updateField', { path: 'isAuth', value: false })
+        this.$store.commit('auth/updateField', { path: 'token', value: null })
+        this.$router.replace('/')
+      }).onCancel(() => {
+        // console.log('>>>> Cancel')
+        // do nothing
       })
     }
   },
