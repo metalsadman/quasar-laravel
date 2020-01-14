@@ -53,9 +53,11 @@ $ php artisan serve
 > Examples in this repo (except auth implementations) are taken from my codesandbox examples https://codesandbox.io/s/quasar-v1-samples-0ybb3
 
 ```bash
+#install laravel passport dependency
+$ composer require laravel/passport
 #migration
 $ php artisan migrate
-#install laravel passport
+#generate laravel passport keys
 $ php artisan passport:install
 ```
 
