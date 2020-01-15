@@ -12,9 +12,9 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@quasar/extras": "^1.0.0",
+    "@quasar/extras": "^1.4.1",
     "axios": "0.19.0",
-    "quasar": "^1.5.9",
+    "quasar": "^1.7.3",
     "vee-validate": "2.2.13",
     "vue-content-loader": "0.2.2",
     "vue-i18n": "^8.0.0",
@@ -23,7 +23,7 @@
     "vuex-persistedstate": "2.5.4"
   },
   "devDependencies": {
-    "@quasar/app": "^1.4.1",
+    "@quasar/app": "^1.5.1",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
     "copy-webpack-plugin": "^5.0.5",
