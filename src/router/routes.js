@@ -5,7 +5,6 @@ const routes = [
     path: '/home',
     component: () => import('layouts/MyLayout.vue'),
     children: [
-      // { path: '', component: () => import('pages/Index.vue') },
       {
         path: '',
         meta: {
@@ -26,26 +25,30 @@ const routes = [
   },
   {
     path: '/component-samples',
-    meta: {
-      title: 'Select Extension Sample'
-    },
     component: () => import('layouts/MyLayout.vue'),
-    children: [{ path: '', component: () => import('pages/ComponentSamples/SelectSample.vue') }]
+    children: [{
+      path: '',
+      meta: {
+        title: 'Select Extension Sample'
+      },
+      component: () => import('pages/ComponentSamples/SelectSample.vue')
+    }]
   },
 
   {
     path: '/dialog-sample',
-    meta: {
-      title: 'Form in Dialog sample'
-    },
+
     component: () => import('layouts/MyLayout.vue'),
-    children: [{ path: '', component: () => import('pages/ComponentSamples/Samples.vue') }]
+    children: [{
+      path: '',
+      meta: {
+        title: 'Form in Dialog sample'
+      },
+      component: () => import('pages/ComponentSamples/Samples.vue')
+    }]
   },
   {
     path: '/form-validations',
-    meta: {
-      title: 'Form Component Extension Samples'
-    },
     component: () => import('layouts/MyLayout.vue'),
     children: [
       {
