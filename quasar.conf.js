@@ -43,7 +43,7 @@ module.exports = function (ctx) {
       //            (not treeshaking Quasar; biggest bundle size; convenient)
       all: 'auto',
 
-      components: [],
+      // components: ['QResponsive'],
       directives: ['Ripple'],
 
       // Quasar plugins
