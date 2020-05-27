@@ -1,4 +1,4 @@
-# Laravel 6x + Quasar Framework v1.+
+# Laravel 7x + Quasar Framework v1.+
 
 ## Setup
 
