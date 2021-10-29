@@ -15,7 +15,7 @@
 //    return view('welcome');
 //});
 
-// Redirect all to the front-end router
-Route::get('/{pattern?}', function() {
-     return view('welcome');
- })->where('pattern', '.*');
+// Redirect get requests (vue-router) to front-end view / generated public/index.html by quasar
+Route::get('/{pattern?}', function () {
+    return view('welcome');
+})->where('pattern', '.*');
