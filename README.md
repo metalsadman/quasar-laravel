@@ -1,4 +1,4 @@
-# Laravel 8x + Quasar Framework v1.+
+# Laravel 8x + Quasar Framework v2.+
 
 ## Setup
 
