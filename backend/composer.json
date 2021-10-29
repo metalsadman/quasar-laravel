@@ -10,7 +10,7 @@
   "require": {
     "php": "^7.2.5",
     "fideloper/proxy": "^4.2",
-    "fruitcake/laravel-cors": "^1.0",
+    "fruitcake/laravel-cors": "^2.0.4",
     "guzzlehttp/guzzle": "^7.0.1",
     "laravel/framework": "^8.0",
     "laravel/passport": "^10.0",
@@ -38,7 +38,7 @@
       "App\\": "app/"
     },
     "classmap": [
-      "database/seeds",
+      "database/seeders",
       "database/factories"
     ]
   },
