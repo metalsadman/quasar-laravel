@@ -5,36 +5,36 @@
 > rename or copy .env.example to .env
 
 ```bash
-$ cp .env.example .env
+backend $ cp .env.example .env
 ```
 
 ```bash
 # install php dependencies
-$ composer install
+backend $ composer install
 
 # Node.js >= 12.22.x is required.
-$ npm install -g @quasar/cli
+frontend $ npm install -g @quasar/cli
 # install yarn
-$ npm install -g yarn
+frontend $ npm install -g yarn
 # install node dependencies
-$ yarn
+frontend $ yarn
 
 # generate key
-$ php artisan key:generate
+backend $ php artisan key:generate
 
 # set privileges to node_modules folder (optional)
-#$ chmod -R u+x node_modules/
+# frontend $ chmod -R u+x node_modules/
 ```
 
 ## Dev
 
 ```bash
 #first start the back-end (don't use the artisan's serve url in this mode)
-$ php artisan serve
+backend $ php artisan serve
 
 #then build for development mode
 
-$ quasar dev | -m <mode>
+frontend $ quasar dev | -m <mode>
 ```
 
 ## Production
@@ -42,8 +42,8 @@ $ quasar dev | -m <mode>
 ```bash
 #build for production (it'll generate and copy the necessary files)
 
-$ quasar build | -m <mode>
-$ php artisan serve
+frontend $ quasar build | -m <mode>
+backend $ php artisan serve
 ```
 
 > `Check out`quasar.conf.js``
@@ -54,11 +54,11 @@ $ php artisan serve
 
 ```bash
 #install laravel passport dependency
-$ composer require laravel/passport
+backend $ composer require laravel/passport
 #migration
-$ php artisan migrate
+backend $ php artisan migrate
 #generate laravel passport keys
-$ php artisan passport:install
+backend $ php artisan passport:install
 ```
 
 ## Laravel License
