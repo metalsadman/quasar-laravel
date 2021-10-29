@@ -1,4 +1,4 @@
-# Laravel 7x + Quasar Framework v1.+
+# Laravel 8x + Quasar Framework v1.+
 
 ## Setup
 
@@ -12,7 +12,7 @@ $ cp .env.example .env
 # install php dependencies
 $ composer install
 
-# Node.js >= 8.9.0 is required.
+# Node.js >= 12.22.x is required.
 $ npm install -g @quasar/cli
 # install yarn
 $ npm install -g yarn
